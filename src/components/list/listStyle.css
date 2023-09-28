@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.list {
+    background-color: #393941;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .listTitle {
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: #ffde94;
+    font-family: 'Press Start 2P', cursive;
+  }
+  
+  .listItem {
+    margin: 5px 0;
+    color: #7394a4;
+  }
+  
+  .listItem a {
+    text-decoration: none;
+    color: #de395a;
+    font-family: 'VT323', monospace;
+    font-size: 21px;
+    cursor: pointer;
+  }
+  
+  .listItem a:hover {
+    text-decoration: underline;
+  }
+  
+  .buttonMore {
+    display: block;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    background-color: #dedede;
+    color: #73ac31;
+  }
+  
+  .buttonMore:hover {
+    text-decoration: underline;
+  }

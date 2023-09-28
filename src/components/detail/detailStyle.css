@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.detail {
+    background-color: #393941;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .pokeTitle {
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: #decdf6; 
+    font-family: 'Press Start 2P', cursive;
+  }
+  
+  .pokeData {
+    font-family: 'VT323', monospace;
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    color: #cdcdd5;
+  }
+  
+  .pokeAbilities {
+    color: #ffacac;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 21px;
+    margin-top: 40px;
+    margin-left: 30px
+  }
+
+  .buttonBack {
+    display: block;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    background-color: #dedede;
+    color: #73ac31;
+  }
+  
+  .buttonBack:hover {
+    text-decoration: underline;
+  }
+  
+  .loading {
+    color: #393941;
+    font-size: 100px;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    margin-top: 23%;
+  }
+  
