@@ -1,8 +1,8 @@
 # pokemon
 some pokemons (ㆆ_ㆆ)
 
-Se implementaron dos botenes, uno en la Lista, para poder cargar mas pokémones y otro en el Dettalle para volver a la lista
+Two buttons were implemented, one on List, to be able to load more Pokémons and another on Detail to return to the List
 
-Intallar:
+Intall:
 React Router: npm install react-router-dom </br>
 Axios: npm install axios
