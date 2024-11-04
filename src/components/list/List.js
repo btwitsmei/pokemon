@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import "./listStyle.css"
-
+import "./listStyle.css";
 
 function List() {
-  const [pokeList, setPokeList] = useState([]);
-  const [nextUrl, setNextUrl] = useState('');
+  const [pokeList, setPokeList] = useState([]); 
+  const [offset, setOffset] = useState(0); 
 
   const fetchPokeList = async () => {
     try {
-      const response = await axios.get(nextUrl || 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
-      setPokeList([...pokeList, ...response.data.results]);
-      setNextUrl(response.data.next);
+      const response = await axios.get(`http://localhost:3001/bff/pokemon?limit=20&offset=${offset}`);
+      const pokemons = response.data.pokemons;
+
+      if (Array.isArray(pokemons)) {
+        setPokeList(prevPokeList => [...prevPokeList, ...pokemons]);
+      } else {
+        console.error('La respuesta no contiene un arreglo de pokemons');
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error al cargar la lista:", error);
     }
   };
 
-  const loadMore = () => {
-    fetchPokeList();
-  };
 
   useEffect(() => {
-    fetchPokeList();
+    fetchPokeList(); 
   }, []); 
+
+
+  const loadMore = () => {
+    setOffset(prevOffset => prevOffset + 20); 
+    fetchPokeList(); 
+  };
 
   return (
     <div className="list">
@@ -39,7 +46,6 @@ function List() {
       <button className="buttonMore" onClick={loadMore}>More Pokémons...</button>
     </div>
   );
-
 }
 
 export default List;

@@ -1,50 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import "./detailStyle.css"
 
-function Detail() {
+const Detail = () => {
   const { name } = useParams();
-  const [pokeData, setPokeData] = useState(null);
-  const history = useNavigate();
+  const [pokemonDetails, setPokemonDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-      .then((response) => {
-        setPokeData(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const fetchPokemonDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/bff/pokemon/${name}`);
+        setPokemonDetails(response.data);
+      } catch (error) {
+        console.error('Error fetching Pokémon details:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPokemonDetails();
   }, [name]);
 
-  if (!pokeData) {
+  if (loading) {
     return <div className='loading'>Loading...</div>;
   }
 
-  const goBackToList = () => {
-    history('/');
-  };
+  if (!pokemonDetails) {
+    return <div className='loading'>No details available.</div>;
+  }
 
   return (
-    <div className="detail">
-      <h1 className="pokeTitle">{pokeData.name}</h1>
-      <p className="pokeData">Order: {pokeData.order}</p>
-      <p className="pokeData">Base Experience: {pokeData.base_experience}</p>
-      <p className="pokeData">Height: {pokeData.height}</p>
-      <h2 className="pokeAbilities">Abilities:</h2>
+    <div className='detail'>
+      <h1 className='pokeTitle'>{pokemonDetails.name}</h1>
+      <p className='pokeData'>Order: {pokemonDetails.order}</p>
+      <p className='pokeData'>Base Experience: {pokemonDetails.base_experience}</p>
+      <p className='pokeData'>Height: {pokemonDetails.height}</p>
+      <h2 className='pokeAbilities'>Abilities:</h2>
       <ul>
-        {pokeData.abilities.map((ability, index) => (
-          <li key={index} className="pokeData">
-            <span className="pokeData">{ability.ability.name}</span>
-          </li>
-      ))}
+        {pokemonDetails.abilities && pokemonDetails.abilities.map((ability, index) => (
+          <li className='pokeData' key={index}>{ability}</li>
+        ))}
       </ul>
-      <button className="buttonBack" onClick={goBackToList}>Back to List</button>
     </div>
-
   );
-}
+};
 
 export default Detail;
